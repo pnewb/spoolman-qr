@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <title>QR code generation - Spoolman</title>
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+        <form onsubmit="return generate(event)">
+            <table>
+                <tr>
+                    <td>
+                        <label for="format">Format</label>
+                    </td>
+                    <td>
+                        <select id="format" value="full-url" onchange="origin.required = this.value === 'full-url'">
+                            <option value="full-url">Full URL (http://&lt;origin&gt;/spool/show/&lt;id&gt;)</option>
+                            <option value="partial-url">Partial URL (/spool/show/&lt;id&gt;)</option>
+                        </select>
+                    </td>
+
+                    <td>
+                        <label for="paper">Paper Size</label>
+                    </td>
+                    <td>
+                        <select id="paper" value="a4">
+                            <option value="a4">A4 (210mm x 297mm)</option>
+                            <option value="letter">Letter (8.5in x 11in)</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="origin">Origin</label>
+                    </td>
+                    <td>
+                        <input id="origin" type="text" value="http://spoolman/" required>
+                    </td>
+
+                    <td>
+                        <label for="start">Start-ID</label>
+                    </td>
+                    <td>
+                        <input id="start" type="number" value="1">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="row-length">Codes per row</label>
+                    </td>
+                    <td>
+                        <input id="row-length" type="number" value="5">
+                    </td>
+
+                    <td>
+                        <label for="end">End-ID</label>
+                    </td>
+                    <td>
+                        <input id="end" type="text" value="-" disabled>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="padding" style="color: #00ff00;">Padding (%)</label>
+                    </td>
+                    <td>
+                        <input id="padding" type="number" value="10">
+                    </td>
+
+                    <td>
+                        <label for="margin" style="color: #ff0000;">Margin (%)</label>
+                    </td>
+                    <td>
+                        <input id="margin" type="number" value="5">
+                    </td>
+
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <button type="submit">Generate</button>
+                        </td>
+                    </tr>
+                </tr>
+            </table>
+        </form>
+
+        <img id="output" src="/sample.png">
+        <div id="generator"></div>
+
+        <script src="https://cdn.jsdelivr.net/gh/matmen/imagescript@browser/browser/ImageScript.js"></script>
+        <script src="/qrcode.min.js"></script>
+        <script src="/script.js"></script>
+    </body>
+</html>

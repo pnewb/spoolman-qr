@@ -1,0 +1,9 @@
+#output {
+    max-width: 21em;
+    max-height: 29.7em;
+    border: 1px solid black;
+}
+
+#generator {
+    visibility: hidden;
+}
