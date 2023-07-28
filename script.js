@@ -29,8 +29,6 @@ const doGenerate = async (paper, start, codesPerRow, margin, padding, format, or
         height: Math.floor(qrSize * (1 / quietZone) - 2)
     });
 
-    console.log(qr);
-
     const margins = [WIDTH - maxWidth, HEIGHT - maxHeight];
     const canvas = new ImageScript.Image(WIDTH, HEIGHT);
     canvas.fill(0xffffffff);
