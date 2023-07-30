@@ -11,7 +11,8 @@
                         <label for="format">Format</label>
                     </td>
                     <td>
-                        <select id="format" value="full-url" onchange="origin.required = this.value === 'full-url'">
+                        <select id="format" value="intent" onchange="origin.required = this.value === 'full-url'">
+                            <option value="intent">Intent URL (spoolman://spool/&lt;id&gt;)</option>
                             <option value="full-url">Full URL (http://&lt;origin&gt;/spool/show/&lt;id&gt;)</option>
                             <option value="partial-url">Partial URL (/spool/show/&lt;id&gt;)</option>
                         </select>
