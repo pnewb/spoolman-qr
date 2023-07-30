@@ -1,8 +1,6 @@
 const PAPER_SIZES = { a4: [210, 297], letter: [215.9, 279.4] }
 window.SharedArrayBuffer = class SharedArrayBuffer {};
 
-const generatorContainer = document.getElementById('generator');
-
 const getData = (format, id, origin) => {
     switch(format) {
         case 'full-url':
@@ -15,7 +13,10 @@ const getData = (format, id, origin) => {
     }
 }
 
+const generateButton = document.getElementById('generate-button');
+
 const doGenerate = async (paper, start, codesPerRow, margin, padding, format, origin) => {
+    generateButton.disabled = true;
     let [WIDTH, HEIGHT] = PAPER_SIZES[paper].map(v => v * 10 /* 10px/mm = 254dpi */);
 
     const quietZone = 1 + padding / 100;
@@ -24,6 +25,7 @@ const doGenerate = async (paper, start, codesPerRow, margin, padding, format, or
     const rows = Math.floor((HEIGHT * (1 - margin / 100)) / qrSize);
     const maxHeight = rows * qrSize;
 
+    const generatorContainer = document.createElement('generator');
     const qr = new QRCode(generatorContainer, {
         text: document.location.href,
         width: Math.floor(qrSize * (1 / quietZone) - 2),
@@ -52,7 +54,7 @@ const doGenerate = async (paper, start, codesPerRow, margin, padding, format, or
             for(let i = 0; i < qrImg.__view__.byteLength; i++)
                 qrImg.__view__.setUint8(i, codePixels[i]);
 
-            qrCanvas.composite(qrImg, Math.floor(1 + qrSize * (quietZone - 1) / 2), Math.floor(1 + qrSize * (quietZone - 1) / 2));
+            qrCanvas.composite(qrImg, (qrCanvas.width - qrImg.width) / 2, (qrCanvas.height - qrImg.height) / 2);
             canvas.composite(
                 qrCanvas,
                 Math.floor(margins[0] / 2 + col * qrSize),
@@ -62,6 +64,9 @@ const doGenerate = async (paper, start, codesPerRow, margin, padding, format, or
     }
 
     document.getElementById('end').value = n - 1;
+    document.getElementById('size').value = `${Math.round(qrSize / 10)}mm x ${Math.round(qrSize / 10)}mm`
+    generatorContainer.remove();
+    generateButton.disabled = false;
 
     const result = await canvas.encode();
     const blob = new Blob([result], { type: 'image/png' });

@@ -37,7 +37,7 @@
                     </td>
 
                     <td>
-                        <label for="start">Start-ID</label>
+                        <label for="start" min="1">Start-ID</label>
                     </td>
                     <td>
                         <input id="start" type="number" value="1">
@@ -49,7 +49,7 @@
                         <label for="row-length">Codes per row</label>
                     </td>
                     <td>
-                        <input id="row-length" type="number" value="5">
+                        <input id="row-length" type="number" value="5" min="1" max="20">
                     </td>
 
                     <td>
@@ -65,22 +65,27 @@
                         <label for="padding" style="color: #00ff00;">Padding (%)</label>
                     </td>
                     <td>
-                        <input id="padding" type="number" value="15">
+                        <input id="padding" type="number" value="15" min="0" max="25">
                     </td>
 
                     <td>
                         <label for="margin" style="color: #ff0000;">Margin (%)</label>
                     </td>
                     <td>
-                        <input id="margin" type="number" value="5">
+                        <input id="margin" type="number" value="5" min="0" max="20">
                     </td>
 
                     <tr>
-                        <td></td>
-                        <td></td>
+                        <td>
+                            <label for="size">Code Size</label>
+                        </td>
+                        <td>
+                            <input id="size" type="text" value="-" disabled>
+                        </td>
+
                         <td></td>
                         <td>
-                            <button type="submit">Generate</button>
+                            <button id="generate-button" type="submit">Generate</button>
                         </td>
                     </tr>
                 </tr>
@@ -88,7 +93,6 @@
         </form>
 
         <img id="output" src="/sample.png">
-        <div id="generator"></div>
 
         <script src="https://cdn.jsdelivr.net/gh/matmen/imagescript@browser/browser/ImageScript.js"></script>
         <script src="/qrcode.min.js"></script>
