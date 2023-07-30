@@ -17,7 +17,6 @@ const getData = (format, id, origin) => {
 
 const doGenerate = async (paper, start, codesPerRow, margin, padding, format, origin) => {
     let [WIDTH, HEIGHT] = PAPER_SIZES[paper].map(v => v * 10 /* 10px/mm = 254dpi */);
-    const codes = [];
 
     const quietZone = 1 + padding / 100;
     const maxWidth = Math.floor(WIDTH / codesPerRow) * codesPerRow - WIDTH * margin / 100;
@@ -28,7 +27,8 @@ const doGenerate = async (paper, start, codesPerRow, margin, padding, format, or
     const qr = new QRCode(generatorContainer, {
         text: document.location.href,
         width: Math.floor(qrSize * (1 / quietZone) - 2),
-        height: Math.floor(qrSize * (1 / quietZone) - 2)
+        height: Math.floor(qrSize * (1 / quietZone) - 2),
+        correctLevel: QRCode.CorrectLevel.L
     });
 
     const margins = [WIDTH - maxWidth, HEIGHT - maxHeight];
