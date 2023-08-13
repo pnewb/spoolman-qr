@@ -11,8 +11,8 @@
                         <label for="format">Format</label>
                     </td>
                     <td>
-                        <select id="format" value="intent" onchange="origin.required = this.value === 'full-url'">
-                            <option value="intent">Intent URL (spoolman://spool/&lt;id&gt;)</option>
+                        <select id="format" value="official" onchange="origin.required = this.value === 'full-url'">
+                            <option value="official">Official QR code (web+spoolman:s-&lt;id&gt;)</option>
                             <option value="full-url">Full URL (http://&lt;origin&gt;/spool/show/&lt;id&gt;)</option>
                             <option value="partial-url">Partial URL (/spool/show/&lt;id&gt;)</option>
                         </select>

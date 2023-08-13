@@ -6,8 +6,8 @@ const getData = (format, id, origin) => {
         case 'full-url':
         case 'partial-url':
             return `${((format == 'full-url' && origin) || '').replace(/\/+$/, '')}/spool/show/${id}`;
-        case 'intent':
-            return `spoolman://spool/${id}`;
+        case 'official':
+            return `web+spoolman:s-${id}`;
         default:
             throw new Error('invalid format')
     }
