@@ -1,4 +1,4 @@
-const PAPER_SIZES = { a4: [210, 297], letter: [215.9, 279.4] }
+const PAPER_SIZES = { a4: [210, 297], letter: [215.9, 279.4], '4x6': [101, 151] }
 window.SharedArrayBuffer = class SharedArrayBuffer {};
 
 const getData = (format, id, origin) => {
